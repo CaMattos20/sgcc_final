@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Persons</title>
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+</head>
+<body>
+	<h2>Persons</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name<th>
+				<th>Email<th>
+				<th>Phone Number<th>
+				<th>Type<th>
+				<th>Document<th>
+				<th>Status<th>
+				<th>Valid From<th>
+				<th>Valid To<th>
+			</tr>
+		<thead>
+		<tr th:each="person : ${list}">
+			<td><span th:text="${person.name}"></span></td>
+			<td><span th:text="${person.email}"></span></td>
+			<td><span th:text="${person.phoneNumber}"></span></td>
+			<td><span th:text="${person.personType}"></span></td>
+			<td><span th:text="${person.document}"></span></td>
+			<td><span th:text="${person.status}"></span></td>
+			<td><span th:text="${person.validFrom}"></span></td>
+			<td><span th:text="${person.validTo}"></span></td>
+		</tr>
+	</table>
+</body>
+</html>
