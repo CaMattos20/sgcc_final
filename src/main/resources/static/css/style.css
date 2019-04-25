@@ -1,0 +1,26 @@
+@charset "ISO-8859-1";
+
+.main-title {
+	border-bottom: 1px solid #343a40;
+	padding: 20px 10px;
+}
+
+.table-actions {
+	text-align: center;
+}
+
+.icon-edit {
+	color: #343a40;
+}
+
+.icon-edit:hover {
+	color: #666;
+}
+
+.icon-trash {
+	color: #A00;
+}
+
+.icon-trash:hover {
+	color: #D00;
+}

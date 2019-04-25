@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Persons</title>
+	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h2 class="main-title">Persons / Form</h2>
+		<br />
+		<form action="http://localhost:8080/person/" method="POST">
+			<div class="form-group">
+				<label>Name</label>
+				<input type="text" class="form-control" placeholder="Name" name="name">
+			</div>
+			<div class="form-group">
+				<label>Email</label>
+				<input type="text" class="form-control" placeholder="Email" name="email">
+			</div>
+			<div class="form-group">
+				<label>Phone Number</label>
+				<input type="text" class="form-control" placeholder="Phone Number" name="phoneNumber">
+			</div>
+			<div class="form-group">
+				<label>Type</label>
+				<input type="text" class="form-control" placeholder="Type" name="personType">
+			</div>
+			<div class="form-group">
+				<label>Document</label>
+				<input type="text" class="form-control" placeholder="Document" name="document">
+			</div>
+			
+			<button type="submit" class="btn btn-dark">Submit</button>
+		</form>
+	</div>
+</body>
+</html>

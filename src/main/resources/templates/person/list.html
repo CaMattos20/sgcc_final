@@ -4,32 +4,47 @@
 	<meta charset="UTF-8">
 	<title>Persons</title>
 	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-	<h2>Persons</h2>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Name<th>
-				<th>Email<th>
-				<th>Phone Number<th>
-				<th>Type<th>
-				<th>Document<th>
-				<th>Status<th>
-				<th>Valid From<th>
-				<th>Valid To<th>
-			</tr>
-		<thead>
-		<tr th:each="person : ${list}">
-			<td><span th:text="${person.name}"></span></td>
-			<td><span th:text="${person.email}"></span></td>
-			<td><span th:text="${person.phoneNumber}"></span></td>
-			<td><span th:text="${person.personType}"></span></td>
-			<td><span th:text="${person.document}"></span></td>
-			<td><span th:text="${person.status}"></span></td>
-			<td><span th:text="${person.validFrom}"></span></td>
-			<td><span th:text="${person.validTo}"></span></td>
-		</tr>
-	</table>
+	<div class="container">
+		<h2 class="main-title">Persons</h2>
+		<br />
+		<a href="http://localhost:8080/person/form" class="btn btn-outline-dark" >New</a>
+		<br/>
+		<br/>
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone Number</th>
+					<th scope="col">Type</th>
+					<th scope="col">Document</th>
+					<th scope="col">Status</th>
+					<th scope="col">Valid From</th>
+					<th scope="col">Valid To</th>
+					<th scope="col">Actions</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr th:each="person : ${list}">
+					<td><span th:text="${person.name}"></span></td>
+					<td><span th:text="${person.email}"></span></td>
+					<td><span th:text="${person.phoneNumber}"></span></td>
+					<td><span th:text="${person.personType}"></span></td>
+					<td><span th:text="${person.document}"></span></td>
+					<td><span th:text="${person.status}"></span></td>
+					<td><span th:text="${person.validFrom}"></span></td>
+					<td><span th:text="${person.validTo}"></span></td>
+					<td class="table-actions">
+						<a href="#" class="icon-edit"><i class="fas fa-edit"></i></a>
+						<a href="#" class="icon-trash"><i class="fas fa-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </body>
 </html>
