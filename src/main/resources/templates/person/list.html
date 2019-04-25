@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Persons</title>
-	<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="../css/style.css">
+	<link type="text/css" rel="stylesheet" href="..static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+	<link type="text/css" rel="stylesheet" href="..static/css/style.css" th:href="@{/css/style.css}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
@@ -39,8 +39,8 @@
 					<td><span th:text="${person.validFrom}"></span></td>
 					<td><span th:text="${person.validTo}"></span></td>
 					<td class="table-actions">
-						<a href="#" class="icon-edit"><i class="fas fa-edit"></i></a>
-						<a href="#" class="icon-trash"><i class="fas fa-trash"></i></a>
+						<a th:href="@{'/person/form/' + ${person.id}}" class="icon-edit"><i class="fas fa-edit"></i></a>
+						<a th:href="@{'/person/delete/' + ${person.id}}" class="icon-trash"><i class="fas fa-trash"></i></a>
 					</td>
 				</tr>
 			</tbody>
