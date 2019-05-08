@@ -24,3 +24,15 @@
 .icon-trash:hover {
 	color: #D00;
 }
+
+a:hover {
+	cursor: pointer;
+}
+
+
+.filters > form > input {
+	margin-right: 10px;
+	border: 0px;
+	border-bottom: 1px solid #333;
+	outline-width: 0; 
+}

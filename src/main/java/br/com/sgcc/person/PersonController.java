@@ -9,7 +9,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,10 +23,26 @@ public class PersonController {
 	private PersonRepository repository;
 	
 	@GetMapping("")
-	public String list(Model model) {
-		List<Person> list = repository.findAll(of(0, 20)).getContent();
+	public String list(Model model, Optional<String> page, Optional<String> name, Optional<String> email, Optional<String> type, 
+						Optional<String> phoneNumber, Optional<String> document) {
+		int pageSize = 5;
 		
+		int pageInt = Integer.parseInt(page.orElse("1"));
+		
+		List<Person> list = repository.findByFilters(name.orElse(""), email.orElse(""), type.orElse(""), phoneNumber.orElse(""), document.orElse(""), of(pageInt-1, pageSize)).getContent();
+		
+		long count = repository.count(name.orElse(""), email.orElse(""), type.orElse(""), phoneNumber.orElse(""), document.orElse(""));
+		
+		int pageCount = (int) Math.ceil(count * 1.0 / pageSize);
+
 		model.addAttribute("list", list);
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("page", pageInt);
+		model.addAttribute("name", name.orElse(""));
+		model.addAttribute("email", email.orElse(""));
+		model.addAttribute("type", type.orElse(""));
+		model.addAttribute("phoneNumber", phoneNumber.orElse(""));
+		model.addAttribute("document", document.orElse(""));
 		
 		return "person/list";
 	}

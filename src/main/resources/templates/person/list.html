@@ -3,16 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Persons</title>
-	<link type="text/css" rel="stylesheet" href="..static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link type="text/css" rel="stylesheet" href="..static/css/style.css" th:href="@{/css/style.css}">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/all.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/paginator.css}">
 </head>
 <body>
 	<div class="container">
 		<h2 class="main-title">Persons</h2>
+		<a th:href="@{/person/form}" class="btn btn-outline-dark" >New</a>
 		<br />
-		<a href="http://localhost:8080/person/form" class="btn btn-outline-dark" >New</a>
 		<br/>
+		<div class="filters">
+			<form th:href="@{/person}" method="GET" autocomplete="off">
+				<input type="hidden" name="page" th:value="${page}">
+				<input type="text" placeholder="Nome" name="name" th:value="${name}">
+				<input type="text" placeholder="Email" name="email" th:value="${email}">
+				<input type="text" placeholder="Phone number" name="phoneNumber" th:value="${phoneNumber}">
+				<input type="text" placeholder="Type" name="type" th:value="${type}">
+				<input type="text" placeholder="Document" name="document" th:value="${document}">
+				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
+			</form>
+		</div>
 		<br/>
 		<table class="table table-hover">
 			<thead class="thead-dark">
@@ -22,9 +34,6 @@
 					<th scope="col">Phone Number</th>
 					<th scope="col">Type</th>
 					<th scope="col">Document</th>
-					<th scope="col">Status</th>
-					<th scope="col">Valid From</th>
-					<th scope="col">Valid To</th>
 					<th scope="col">Actions</th>
 				</tr>
 			<thead>
@@ -35,9 +44,6 @@
 					<td><span th:text="${person.phoneNumber}"></span></td>
 					<td><span th:text="${person.personType}"></span></td>
 					<td><span th:text="${person.document}"></span></td>
-					<td><span th:text="${person.status}"></span></td>
-					<td><span th:text="${person.validFrom}"></span></td>
-					<td><span th:text="${person.validTo}"></span></td>
 					<td class="table-actions">
 						<a th:href="@{'/person/form/' + ${person.id}}" class="icon-edit"><i class="fas fa-edit"></i></a>
 						<a th:href="@{'/person/delete/' + ${person.id}}" class="icon-trash"><i class="fas fa-trash"></i></a>
@@ -45,6 +51,23 @@
 				</tr>
 			</tbody>
 		</table>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item" th:classappend="${page <= 1} ? disabled">
+					<a class="page-link"  th:href="@{/person(page=${page-1},name=${name},email=${email},type=${type})}" aria-disabled="true">Previous</a>
+				</li>
+				<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
+					<li class="page-item" th:classappend="${i == page} ? active : ''">
+						<a class="page-link" th:href="@{/person(page=${i},name=${name},email=${email},type=${type})}">
+							<span th:text="${i}"></span>
+						</a>
+					</li>
+				</th:block>
+				<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
+					<a class="page-link" th:href="@{/person(page=${page+1},name=${name},email=${email},type=${type})}">Next</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 </body>
 </html>
