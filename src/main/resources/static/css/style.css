@@ -36,3 +36,15 @@ a:hover {
 	border-bottom: 1px solid #333;
 	outline-width: 0; 
 }
+
+.crud-buttons {
+	margin: 20px 0px;
+}
+
+.form-buttons button {
+	width: 48.5%;
+}
+
+.form-buttons button:first-child {
+	margin-right: 2%;
+}

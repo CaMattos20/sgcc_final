@@ -10,18 +10,21 @@
 </head>
 <body>
 	<div class="container">
-		<h2 class="main-title">Persons</h2>
-		<a th:href="@{/person/form}" class="btn btn-outline-dark" >New</a>
-		<br />
-		<br/>
+		<h2 class="main-title">Pessoas</h2>
+		
+		<div class="container">
+		<div class="crud-buttons">
+			<a th:href="@{/person/form}" class="btn btn-outline-dark">Adicionar</a>
+		</div>
+		
 		<div class="filters">
 			<form th:href="@{/person}" method="GET" autocomplete="off">
 				<input type="hidden" name="page" th:value="${page}">
 				<input type="text" placeholder="Nome" name="name" th:value="${name}">
-				<input type="text" placeholder="Email" name="email" th:value="${email}">
-				<input type="text" placeholder="Phone number" name="phoneNumber" th:value="${phoneNumber}">
-				<input type="text" placeholder="Type" name="type" th:value="${type}">
-				<input type="text" placeholder="Document" name="document" th:value="${document}">
+				<input type="text" placeholder="E-mail" name="email" th:value="${email}">
+				<input type="text" placeholder="Telefone" name="phoneNumber" th:value="${phoneNumber}">
+				<input type="text" placeholder="Tipo" name="type" th:value="${type}">
+				<input type="text" placeholder="Documento" name="document" th:value="${document}">
 				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
 			</form>
 		</div>
@@ -29,12 +32,12 @@
 		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Name</th>
-					<th scope="col">Email</th>
-					<th scope="col">Phone Number</th>
-					<th scope="col">Type</th>
-					<th scope="col">Document</th>
-					<th scope="col">Actions</th>
+					<th>Nome</th>
+					<th>E-mail</th>
+					<th>Telefone</th>
+					<th>Tipo</th>
+					<th>Documento</th>
+					<th>Ações</th>
 				</tr>
 			<thead>
 			<tbody>
@@ -54,7 +57,7 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item" th:classappend="${page <= 1} ? disabled">
-					<a class="page-link"  th:href="@{/person(page=${page-1},name=${name},email=${email},type=${type})}" aria-disabled="true">Previous</a>
+					<a class="page-link"  th:href="@{/person(page=${page-1},name=${name},email=${email},type=${type})}" aria-disabled="true">Anterior</a>
 				</li>
 				<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
 					<li class="page-item" th:classappend="${i == page} ? active : ''">
@@ -64,10 +67,11 @@
 					</li>
 				</th:block>
 				<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
-					<a class="page-link" th:href="@{/person(page=${page+1},name=${name},email=${email},type=${type})}">Next</a>
+					<a class="page-link" th:href="@{/person(page=${page+1},name=${name},email=${email},type=${type})}">Próxima</a>
 				</li>
 			</ul>
 		</nav>
+		</div>
 	</div>
 </body>
 </html>

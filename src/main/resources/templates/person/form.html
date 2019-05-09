@@ -3,39 +3,49 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Persons</title>
-	<link type="text/css" rel="stylesheet" href="..static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
-	<link type="text/css" rel="stylesheet" href="..static/css/style.css" th:href="@{/css/style.css}">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/all.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/paginator.css}">
 </head>
 <body>
 	<div class="container">
-		<h2 class="main-title">Persons / Form</h2>
+		<h2 class="main-title">Pessoas / Formulário</h2>
 		<br />
-		<form th:action="@{'/person/'}" th:object="${obj}" method="POST">
-			<input type="hidden" th:field="${obj.id}">
-			<div class="form-group">
-				<label>Name</label>
-				<input type="text" class="form-control" required="required" placeholder="Name" th:field="${obj.name}">
-			</div>
-			<div class="form-group">
-				<label>Email</label>
-				<input type="text" class="form-control" placeholder="Email" th:field="${obj.email}">
-			</div>
-			<div class="form-group">
-				<label>Phone Number</label>
-				<input type="text" class="form-control" placeholder="Phone Number" th:field="${obj.phoneNumber}">
-			</div>
-			<div class="form-group">
-				<label>Type</label>
-				<input type="text" class="form-control" required="required"  placeholder="Type" th:field="${obj.personType}">
-			</div>
-			<div class="form-group">
-				<label>Document</label>
-				<input type="text" class="form-control" required="required"  placeholder="Document" th:field="${obj.document}">
-			</div>
-			
-			<button type="submit" class="btn btn-dark">Submit</button>
-		</form>
+		<div class="container col-sm-8">
+			<form th:action="@{'/person/'}" th:object="${obj}" method="POST">
+				<input type="hidden" th:field="${obj.id}">
+				<div class="form-group">
+					<label>Nome</label>
+					<input type="text" class="form-control" required="required" placeholder="Nome" th:field="${obj.name}">
+				</div>
+				<div class="form-group">
+					<label>E-mail</label>
+					<input type="text" class="form-control" placeholder="E-mail" th:field="${obj.email}">
+				</div>
+				<div class="form-group">
+					<label>Telefone</label>
+					<input type="text" class="form-control" placeholder="Telefone" th:field="${obj.phoneNumber}">
+				</div>
+				<div class="form-group">
+					<label>Tipo</label>
+					<select class="custom-select" th:field="${obj.personType}" required="required">
+						<option value=""></option>
+						<option value="Fisica">Física</option>
+						<option value="Juridica">Juridica</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Documento</label>
+					<input type="text" class="form-control" required="required"  placeholder="Documento" th:field="${obj.document}">
+				</div>
+				
+				<div class="form-buttons">
+					<button type="button" class="btn btn-outline-dark" onclick="window.history.back()">Voltar</button>
+					<button type="submit" class="btn btn-dark">Salvar</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
