@@ -1,7 +1,5 @@
 package br.com.sgcc.person;
 
-import static java.lang.Integer.parseInt;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,38 +21,29 @@ public class PersonController extends ControllerTemplate<Person> {
 	private PersonRepository repository;
 	
 	
+	public PersonController() {
+		super(Person.class);
+	}
+	
+	
 	@GetMapping("")
 	public String list(Model model, Optional<String> page, PersonFilters filters) {
 		return super.list(model, page, repository, filters, "person/list");
 	}
 	
 	@GetMapping(value = {"/form", "/form/{id}"})
-	public String form(@PathVariable Optional<String> id, Model model) {
-		Person obj = new Person();
-		
-		if(id.isPresent()) {
-			obj = repository.findById(parseInt(id.get())).get();
-		}
-		
-		model.addAttribute("obj", obj);
-		
-		return "person/form";
+	public String form(@PathVariable Optional<String> id, Model model) throws Exception {
+		return super.form(repository, id, model, "person/form");
 	}
 	
 	@PostMapping("/")
 	public String save(@ModelAttribute Person person) {
-		System.out.println(person);
-		
-		repository.save(person);
-		
-		return "redirect:/person";
+		return super.save(repository, person, "redirect:/person");
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable String id) {
-		repository.deleteById(parseInt(id));
-		
-		return "redirect:/person";
+		return super.delete(repository, id, "redirect:/person");
 	}
 	
 }

@@ -3,12 +3,11 @@ package br.com.sgcc.person;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 
 import br.com.sgcc.DefaultRepository;
 import br.com.sgcc.Filters;
 
-public interface PersonRepository extends PagingAndSortingRepository<Person, Integer>, DefaultRepository<Person> {
+public interface PersonRepository extends DefaultRepository<Person> {
 
 	@Query("select p from Person p "
 			+ "where upper(p.name) like concat('%', upper(:name), '%') "

@@ -21,9 +21,6 @@
 			<form th:href="@{/person}" method="GET" autocomplete="off">
 				<input type="hidden" name="page" th:value="${page}">
 				<input type="text" placeholder="Nome" name="name" th:value="${filters.name}">
-				<input type="text" placeholder="E-mail" name="email" th:value="${filters.email}">
-				<input type="text" placeholder="Telefone" name="phoneNumber" th:value="${filters.phoneNumber}">
-				<input type="text" placeholder="Tipo" name="type" th:value="${filters.type}">
 				<input type="text" placeholder="Documento" name="document" th:value="${filters.document}">
 				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
 			</form>
@@ -57,17 +54,17 @@
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item" th:classappend="${page <= 1} ? disabled">
-					<a class="page-link"  th:href="@{/person(page=${page-1},name=${name},email=${email},type=${type})}" aria-disabled="true">Anterior</a>
+					<a class="page-link"  th:href="@{/person(page=${page-1},name=${filters.name},document=${filters.document})}" aria-disabled="true">Anterior</a>
 				</li>
 				<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
 					<li class="page-item" th:classappend="${i == page} ? active : ''">
-						<a class="page-link" th:href="@{/person(page=${i},name=${name},email=${email},type=${type})}">
+						<a class="page-link" th:href="@{/person(page=${i},name=${filters.name},document=${filters.document})}">
 							<span th:text="${i}"></span>
 						</a>
 					</li>
 				</th:block>
 				<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
-					<a class="page-link" th:href="@{/person(page=${page+1},name=${name},email=${email},type=${type})}">Próxima</a>
+					<a class="page-link" th:href="@{/person(page=${page+1},name=${filters.name},document=${filters.document})}">Próxima</a>
 				</li>
 			</ul>
 		</nav>
