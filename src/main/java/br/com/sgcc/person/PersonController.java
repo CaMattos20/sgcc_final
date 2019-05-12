@@ -1,9 +1,7 @@
 package br.com.sgcc.person;
 
 import static java.lang.Integer.parseInt;
-import static org.springframework.data.domain.PageRequest.of;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,36 +13,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.sgcc.ControllerTemplate;
+
 @Controller
 @RequestMapping("/person")
-public class PersonController {
+public class PersonController extends ControllerTemplate<Person> {
 
 	@Autowired
 	private PersonRepository repository;
 	
+	
 	@GetMapping("")
-	public String list(Model model, Optional<String> page, Optional<String> name, Optional<String> email, Optional<String> type, 
-						Optional<String> phoneNumber, Optional<String> document) {
-		int pageSize = 5;
-		
-		int pageInt = Integer.parseInt(page.orElse("1"));
-		
-		List<Person> list = repository.findByFilters(name.orElse(""), email.orElse(""), type.orElse(""), phoneNumber.orElse(""), document.orElse(""), of(pageInt-1, pageSize)).getContent();
-		
-		long count = repository.count(name.orElse(""), email.orElse(""), type.orElse(""), phoneNumber.orElse(""), document.orElse(""));
-		
-		int pageCount = (int) Math.ceil(count * 1.0 / pageSize);
-
-		model.addAttribute("list", list);
-		model.addAttribute("pageCount", pageCount);
-		model.addAttribute("page", pageInt);
-		model.addAttribute("name", name.orElse(""));
-		model.addAttribute("email", email.orElse(""));
-		model.addAttribute("type", type.orElse(""));
-		model.addAttribute("phoneNumber", phoneNumber.orElse(""));
-		model.addAttribute("document", document.orElse(""));
-		
-		return "person/list";
+	public String list(Model model, Optional<String> page, PersonFilters filters) {
+		return super.list(model, page, repository, filters, "person/list");
 	}
 	
 	@GetMapping(value = {"/form", "/form/{id}"})

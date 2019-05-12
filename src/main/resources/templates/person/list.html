@@ -20,11 +20,11 @@
 		<div class="filters">
 			<form th:href="@{/person}" method="GET" autocomplete="off">
 				<input type="hidden" name="page" th:value="${page}">
-				<input type="text" placeholder="Nome" name="name" th:value="${name}">
-				<input type="text" placeholder="E-mail" name="email" th:value="${email}">
-				<input type="text" placeholder="Telefone" name="phoneNumber" th:value="${phoneNumber}">
-				<input type="text" placeholder="Tipo" name="type" th:value="${type}">
-				<input type="text" placeholder="Documento" name="document" th:value="${document}">
+				<input type="text" placeholder="Nome" name="name" th:value="${filters.name}">
+				<input type="text" placeholder="E-mail" name="email" th:value="${filters.email}">
+				<input type="text" placeholder="Telefone" name="phoneNumber" th:value="${filters.phoneNumber}">
+				<input type="text" placeholder="Tipo" name="type" th:value="${filters.type}">
+				<input type="text" placeholder="Documento" name="document" th:value="${filters.document}">
 				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
 			</form>
 		</div>
