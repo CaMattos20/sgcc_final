@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Cadastro de Empresas</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/all.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/paginator.css}">
+</head>
+<body>
+	<div class="container">
+		<h2 class="main-title">Cadastro de Empresas</h2>
+		
+		<div class="container">
+			<div class="crud-buttons">
+				<a th:href="@{/company/form}" class="btn btn-outline-dark">Adicionar</a>
+			</div>
+			
+			<div class="filters">
+				<form th:href="@{/company}" method="GET" autocomplete="off">
+					<input type="hidden" name="page" th:value="${page}">
+					<input type="text" placeholder="Nome" name="name" th:value="${filters.name}">
+					<input type="text" placeholder="CNPJ" name="cnpj" th:value="${filters.cnpj}">
+					
+					<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
+				</form>
+			</div>
+			
+			<br/>
+			<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nome</th>
+						<th>E-mail</th>
+						<th>Telefone</th>
+						<th>CNPJ</th>
+						<th>Ações</th>
+					</tr>
+				<thead>
+				<tbody>
+					<tr th:each="company : ${list}">
+						<td><span th:text="${company.name}"></span></td>
+						<td><span th:text="${company.email}"></span></td>
+						<td><span th:text="${company.phoneNumber}"></span></td>
+						<td><span th:text="${company.cnpj}"></span></td>
+						<td class="table-actions">
+							<a th:href="@{'/company/form/' + ${company.id}}" class="icon-edit"><i class="fas fa-edit"></i></a>
+							<a th:href="@{'/company/delete/' + ${company.id}}" class="icon-trash"><i class="fas fa-trash"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:classappend="${page <= 1} ? disabled">
+						<a class="page-link"  th:href="@{/company(page=${page-1},name=${filters.name},cnpj=${filters.cnpj})}" aria-disabled="true">Anterior</a>
+					</li>
+					<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
+						<li class="page-item" th:classappend="${i == page} ? active : ''">
+							<a class="page-link" th:href="@{/company(page=${i},name=${filters.name},cnpj=${filters.cnpj})}">
+								<span th:text="${i}"></span>
+							</a>
+						</li>
+					</th:block>
+					<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
+						<a class="page-link" th:href="@{/company(page=${page+1},name=${filters.name},cnpj=${filters.cnpj})}">Próxima</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</body>
+</html>

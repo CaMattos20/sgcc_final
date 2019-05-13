@@ -1,4 +1,4 @@
-package br.com.sgcc.person;
+package br.com.sgcc.company;
 
 import static java.time.LocalDateTime.now;
 
@@ -16,39 +16,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.sgcc.ControllerTemplate;
 
 @Controller
-@RequestMapping("/person")
-public class PersonController extends ControllerTemplate<Person> {
+@RequestMapping("/company")
+public class CompanyController extends ControllerTemplate<Company> {
 
 	@Autowired
-	private PersonRepository repository;
+	private CompanyRepository repository;
 	
-	
-	public PersonController() {
-		super(Person.class);
+	public CompanyController() {
+		super(Company.class);
 	}
 	
 	
 	@GetMapping("")
-	public String list(Model model, Optional<String> page, PersonFilters filters) {
-		return super.list(model, page, repository, filters, "person/list");
+	public String list(Model model, Optional<String> page, CompanyFilters filters) {
+		return super.list(model, page, repository, filters, "company/list");
 	}
 	
 	@GetMapping(value = {"/form", "/form/{id}"})
 	public String form(@PathVariable Optional<String> id, Model model) throws Exception {
-		return super.form(repository, id, model, "person/form");
+		return super.form(repository, id, model, "company/form");
 	}
 	
 	@PostMapping("/")
-	public String save(@ModelAttribute Person person) {
-		if(person.getId() == null)
-			person.setValidFrom(now());
+	public String save(@ModelAttribute Company company) {
+		if(company.getId() == null)
+			company.setValidFrom(now());
 		
-		return super.save(repository, person, "redirect:/person");
+		return super.save(repository, company, "redirect:/company");
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable String id) {
-		return super.delete(repository, id, "redirect:/person");
-	}
+		return super.delete(repository, id, "redirect:/company");
+	}	
 	
 }

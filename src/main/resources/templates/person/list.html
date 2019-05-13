@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>Persons</title>
+	<title>Cadastro de Pessoas</title>
 	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
 	<link type="text/css" rel="stylesheet" th:href="@{/css/all.css}">
@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container">
-		<h2 class="main-title">Pessoas</h2>
+		<h2 class="main-title">Cadastro de Pessoas</h2>
 		
 		<div class="container">
 		<div class="crud-buttons">
@@ -32,7 +32,6 @@
 					<th>Nome</th>
 					<th>E-mail</th>
 					<th>Telefone</th>
-					<th>Tipo</th>
 					<th>Documento</th>
 					<th>Ações</th>
 				</tr>
@@ -42,7 +41,6 @@
 					<td><span th:text="${person.name}"></span></td>
 					<td><span th:text="${person.email}"></span></td>
 					<td><span th:text="${person.phoneNumber}"></span></td>
-					<td><span th:text="${person.personType}"></span></td>
 					<td><span th:text="${person.document}"></span></td>
 					<td class="table-actions">
 						<a th:href="@{'/person/form/' + ${person.id}}" class="icon-edit"><i class="fas fa-edit"></i></a>

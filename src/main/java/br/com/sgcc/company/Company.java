@@ -1,4 +1,4 @@
-package br.com.sgcc.person;
+package br.com.sgcc.company;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -14,29 +14,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="TB_PERSONS")
-@Data 
+@Table(name="TB_COMPANIES")
+@Data
 @NoArgsConstructor
-public class Person {
-	
+public class Company {
+
 	@Id
-	@Column(name="PERSON_ID")
+	@Column(name="COMPANY_ID")
 	@GeneratedValue(strategy=IDENTITY)
 	private Integer id;
 	
-    @Column(name="NAME")
-    private String name;
+	@Column(name="NAME")
+	private String name;
 	
-    @Column(name="EMAIL")
-    private String email;
+	@Column(name="EMAIL")
+	private String email;
 	
-    @Column(name="PHONE_NUMBER")
-    private String phoneNumber;
+	@Column(name="PHONE_NUMBER")
+	private String phoneNumber;
 	
-    @Column(name="DOCUMENT")
-    private String document;
+	@Column(name="CNPJ")
+	private String cnpj;
 	
-    @Column(name="VALID_FROM")
-    private LocalDateTime validFrom;
+	@Column(name="VALID_FROM")
+	private LocalDateTime validFrom;
 	
 }

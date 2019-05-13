@@ -40,7 +40,7 @@ public class ControllerTemplate<T> {
 	public String form(DefaultRepository<T> repository, Optional<String> id, Model model, String url) throws Exception {
 		T obj = (id.isPresent() ? 
 						repository.findById(parseInt(id.get())).get() 
-						: clazz.newInstance() 
+						: clazz.newInstance()
 					);
 		
 		model.addAttribute("obj", obj);
