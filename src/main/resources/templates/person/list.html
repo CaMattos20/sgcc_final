@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+
+<head th:insert="fragments/default :: head">
 	<meta charset="UTF-8">
-	<title>Cadastro de Pessoas</title>
-	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
-	<link type="text/css" rel="stylesheet" th:href="@{/css/all.css}">
-	<link type="text/css" rel="stylesheet" th:href="@{/css/paginator.css}">
 </head>
+
 <body>
-	<div class="container">
+	<div th:insert="fragments/default :: header"></div>
+	
+	<div class="container main-container">
 		<h2 class="main-title">Cadastro de Pessoas</h2>
 		
 		<div class="container">
@@ -49,7 +48,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<nav aria-label="Page navigation example">
+		<nav class="paginator" aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item" th:classappend="${page <= 1} ? disabled">
 					<a class="page-link"  th:href="@{/person(page=${page-1},name=${filters.name},document=${filters.document})}" aria-disabled="true">Anterior</a>
@@ -68,5 +67,8 @@
 		</nav>
 		</div>
 	</div>
+	
+	<div th:insert="fragments/default :: js"></div>
 </body>
+
 </html>

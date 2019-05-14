@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<meta charset="UTF-8">
+	<title>SGCC</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/all.css}">
+	<link type="text/css" rel="stylesheet" th:href="@{/css/paginator.css}">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
+		<a class="navbar-brand" href="#">SGCC</a>
+		
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         			Cadastros
+         		</a>
+				
+        		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" th:href="@{/person}">Pessoas</a>
+					<a class="dropdown-item" th:href="@{/company}">Empresas</a>
+				</div>
+			</li>
+		</ul>
+	</nav>
+	
+	<div th:fragment="js">
+		<script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	</div>
+</body>
+
+</html>
