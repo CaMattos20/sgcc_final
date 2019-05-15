@@ -1,0 +1,23 @@
+package br.com.sgcc.employee;
+
+import java.util.Optional;
+
+import br.com.sgcc.core.Filters;
+import lombok.Data;
+
+@Data
+public class EmployeeFilters implements Filters {
+
+	private Optional<String> name = Optional.empty();
+	private Optional<String> document = Optional.empty();
+	
+	
+	public String getName() {
+		return name.orElse("");
+	}
+	
+	public String getDocument() {
+		return document.orElse("");
+	}
+	
+}

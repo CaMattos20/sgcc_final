@@ -4,7 +4,7 @@ import static java.util.Optional.empty;
 
 import java.util.Optional;
 
-import br.com.sgcc.Filters;
+import br.com.sgcc.core.Filters;
 import lombok.Data;
 
 @Data

@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.sgcc.DefaultRepository;
-import br.com.sgcc.Filters;
+import br.com.sgcc.core.DefaultRepository;
+import br.com.sgcc.core.Filters;
 
 public interface CompanyRepository extends DefaultRepository<Company> {
 

@@ -1,4 +1,4 @@
-package br.com.sgcc;
+package br.com.sgcc.core;
 
 import static java.lang.Integer.parseInt;
 import static org.springframework.data.domain.PageRequest.of;

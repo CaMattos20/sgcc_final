@@ -9,7 +9,7 @@
 	<div th:insert="fragments/default :: header"></div>
 	
 	<div class="container main-container">
-		<h2 class="main-title">Cadastro de Empresas / Formulário</h2>
+		<div th:insert="fragments/default :: title (message = 'Cadastro de Empresas / Formulário')"></div>
 
 		<div class="container col-sm-8">
 			<form class="default-form"  th:action="@{'/company/'}" th:object="${obj}" method="POST">
