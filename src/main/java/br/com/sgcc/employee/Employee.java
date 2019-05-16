@@ -15,11 +15,10 @@ import javax.persistence.Table;
 import br.com.sgcc.company.Company;
 import br.com.sgcc.person.Person;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="TB_EMPLOYEES")
-@Data @NoArgsConstructor
+@Data 
 public class Employee {
 
 	@Id
@@ -43,5 +42,12 @@ public class Employee {
 	
 	@Column(name="VALID_TO")
 	private LocalDateTime validTO;
+	
+	
+	public Employee() {
+		this.person = new Person();
+		this.company = new Company();
+	}
+	
 	
 }

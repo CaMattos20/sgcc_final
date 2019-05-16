@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.sgcc.company.CompanyRepository;
 import br.com.sgcc.core.ControllerTemplate;
+import br.com.sgcc.person.PersonRepository;
 
 @Controller
 @RequestMapping("/employee")
@@ -21,6 +23,12 @@ public class EmployeeController extends ControllerTemplate<Employee> {
 
 	@Autowired
 	private EmployeeRepository repository;
+	
+	@Autowired 
+	private PersonRepository personRepository;
+	
+	@Autowired
+	private CompanyRepository companyRepository;
 	
 	
 	public EmployeeController() {
@@ -35,13 +43,20 @@ public class EmployeeController extends ControllerTemplate<Employee> {
 	
 	@GetMapping(value = {"/form", "/form/{id}"})
 	public String form(@PathVariable Optional<String> id, Model model) throws Exception {
-		return super.form(repository, id, model, "employee/form");
+		super.form(repository, id, model, "employee/form");
+		
+		model.addAttribute("personList", personRepository.findAll());
+		model.addAttribute("companyList", companyRepository.findAll());
+		
+		return "employee/form";
 	}
 	
 	@PostMapping("/")
 	public String save(@ModelAttribute Employee obj) {
 		if(obj.getId() == null)
 			obj.setValidFrom(now());
+		
+		System.out.println(obj);
 		
 		return super.save(repository, obj, "redirect:/employee");
 	}

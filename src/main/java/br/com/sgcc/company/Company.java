@@ -15,11 +15,13 @@ import javax.persistence.Table;
 import br.com.sgcc.employee.Employee;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Table(name="TB_COMPANIES")
 @Data
 @NoArgsConstructor
+@ToString
 public class Company {
 
 	@Id
@@ -43,6 +45,7 @@ public class Company {
 	private LocalDateTime validFrom;
 	
 	@OneToMany(mappedBy="company")
+	@ToString.Exclude
 	private List<Employee> employees;
 	
 }

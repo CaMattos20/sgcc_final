@@ -20,7 +20,9 @@
 			<form th:href="@{/employee}" method="GET" autocomplete="off">
 				<input type="hidden" name="page" th:value="${page}">
 				<input type="text" placeholder="Nome" name="name" th:value="${filters.name}">
+				<input type="text" placeholder="Empresa" name="company" th:value="${filters.company}">
 				<input type="text" placeholder="Documento" name="document" th:value="${filters.document}">
+				<input type="text" placeholder="Status" name="status" th:value="${filters.status}">
 				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
 			</form>
 		</div>
@@ -28,17 +30,23 @@
 		<table class="table table-hover">
 			<thead class="thead-dark">
 				<tr>
-					<th>Nome</th>
+					<th>Funcionario</th>
+					<th>Empresa</th>
+					<th>Documento</th>
 					<th>E-mail</th>
 					<th>Telefone</th>
-					<th>Documento</th>
+					<th>Status</th>
 					<th>Ações</th>
 				</tr>
 			<thead>
 			<tbody>
 				<tr th:each="employee : ${list}">
 					<td><span th:text="${employee.person.name}"></span></td>
+					<td><span th:text="${employee.company.name}"></span></td>
 					<td><span th:text="${employee.person.document}"></span></td>
+					<td><span th:text="${employee.person.email}"></span></td>
+					<td><span th:text="${employee.person.phoneNumber}"></span></td>
+					<td><span th:text="${employee.status}"></span></td>
 					<td class="table-actions">
 						<a th:href="@{'/employee/form/' + ${employee.id}}" class="icon-edit"><i class="fas fa-edit"></i></a>
 						<a th:href="@{'/employee/delete/' + ${employee.id}}" class="icon-trash"><i class="fas fa-trash"></i></a>
@@ -49,17 +57,24 @@
 		<nav class="paginator" aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item" th:classappend="${page <= 1} ? disabled">
-					<a class="page-link"  th:href="@{/employee(page=${page-1},name=${filters.name},document=${filters.document})}" aria-disabled="true">Anterior</a>
+					<a class="page-link"
+					th:href="@{/employee(page=${page-1},name=${filters.name},company=${filters.company},document=${filters.document},status=${filters.status})}">
+					   Anterior
+					</a>
 				</li>
 				<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
 					<li class="page-item" th:classappend="${i == page} ? active : ''">
-						<a class="page-link" th:href="@{/employee(page=${i},name=${filters.name},document=${filters.document})}">
+						<a class="page-link" 
+						th:href="@{/employee(page=${i},name=${filters.name},company=${filters.company},document=${filters.document},status=${filters.status})}">
 							<span th:text="${i}"></span>
 						</a>
 					</li>
 				</th:block>
 				<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
-					<a class="page-link" th:href="@{/employee(page=${page+1},name=${filters.name},document=${filters.document})}">Próxima</a>
+					<a class="page-link" 
+					th:href="@{/employee(page=${page+1},name=${filters.name},company=${filters.company},document=${filters.document},status=${filters.status})}">
+						Próxima
+					</a>
 				</li>
 			</ul>
 		</nav>
