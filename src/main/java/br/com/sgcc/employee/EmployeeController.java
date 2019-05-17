@@ -1,7 +1,5 @@
 package br.com.sgcc.employee;
 
-import static java.time.LocalDateTime.now;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +36,14 @@ public class EmployeeController extends ControllerTemplate<Employee> {
 	
 	@GetMapping("")
 	public String list(Model model, Optional<String> page, EmployeeFilters filters) {
-		return super.list(model, page, repository, filters, "employee/list");
+		super.list(model, page, repository, filters);
+		
+		return "employee/list";
 	}
 	
 	@GetMapping(value = {"/form", "/form/{id}"})
 	public String form(@PathVariable Optional<String> id, Model model) throws Exception {
-		super.form(repository, id, model, "employee/form");
+		super.form(repository, id, model);
 		
 		model.addAttribute("personList", personRepository.findAll());
 		model.addAttribute("companyList", companyRepository.findAll());
@@ -53,17 +53,16 @@ public class EmployeeController extends ControllerTemplate<Employee> {
 	
 	@PostMapping("/")
 	public String save(@ModelAttribute Employee obj) {
-		if(obj.getId() == null)
-			obj.setValidFrom(now());
+		super.save(repository, obj);
 		
-		System.out.println(obj);
-		
-		return super.save(repository, obj, "redirect:/employee");
+		return "redirect:/employee";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable String id) {
-		return super.delete(repository, id, "redirect:/employee");
+		super.delete(repository, id);
+		
+		return "redirect:/employee";
 	}
 	
 }

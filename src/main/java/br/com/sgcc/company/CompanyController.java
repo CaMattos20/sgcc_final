@@ -1,7 +1,5 @@
 package br.com.sgcc.company;
 
-import static java.time.LocalDateTime.now;
-
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,25 +27,30 @@ public class CompanyController extends ControllerTemplate<Company> {
 	
 	@GetMapping("")
 	public String list(Model model, Optional<String> page, CompanyFilters filters) {
-		return super.list(model, page, repository, filters, "company/list");
+		super.list(model, page, repository, filters);
+		
+		return "company/list";
 	}
 	
 	@GetMapping(value = {"/form", "/form/{id}"})
 	public String form(@PathVariable Optional<String> id, Model model) throws Exception {
-		return super.form(repository, id, model, "company/form");
+		super.form(repository, id, model);
+		
+		return "company/form";
 	}
 	
 	@PostMapping("/")
 	public String save(@ModelAttribute Company company) {
-		if(company.getId() == null)
-			company.setValidFrom(now());
+		super.save(repository, company);
 		
-		return super.save(repository, company, "redirect:/company");
+		return "redirect:/company";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable String id) {
-		return super.delete(repository, id, "redirect:/company");
+		super.delete(repository, id);
+		
+		return "redirect:/company";
 	}	
 	
 }

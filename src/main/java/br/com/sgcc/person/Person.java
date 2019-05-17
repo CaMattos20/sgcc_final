@@ -1,28 +1,20 @@
 package br.com.sgcc.person;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.sgcc.core.NormalizedEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="TB_PERSONS")
 @Data 
+@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
-public class Person {
-	
-	@Id
-	@Column(name="PERSON_ID")
-	@GeneratedValue(strategy=IDENTITY)
-	private Integer id;
+public class Person extends NormalizedEntity {
 	
     @Column(name="NAME")
     private String name;
@@ -35,8 +27,5 @@ public class Person {
 	
     @Column(name="DOCUMENT")
     private String document;
-	
-    @Column(name="VALID_FROM")
-    private LocalDateTime validFrom;
 	
 }
