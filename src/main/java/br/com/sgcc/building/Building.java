@@ -1,4 +1,4 @@
-package br.com.sgcc.person;
+package br.com.sgcc.building;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,20 +10,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="TB_PERSONS")
+@Table(name="TB_BUILDINGS")
 @Data @EqualsAndHashCode(callSuper=false) @NoArgsConstructor
-public class Person extends NormalizedEntity {
-	
+public class Building extends NormalizedEntity {
+
     @Column(name="NAME")
     private String name;
-	
-    @Column(name="EMAIL")
-    private String email;
-	
-    @Column(name="PHONE_NUMBER")
-    private String phoneNumber;
-	
-    @Column(name="DOCUMENT")
-    private String document;
-	
+    
 }

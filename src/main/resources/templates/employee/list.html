@@ -18,7 +18,7 @@
 		
 		<div class="filters">
 			<form th:href="@{/employee}" method="GET" autocomplete="off">
-				<input type="hidden" name="page" th:value="${page}">
+				<input type="hidden" name="page" value="1">
 				<input type="text" placeholder="Nome" name="name" th:value="${filters.name}">
 				<input type="text" placeholder="Empresa" name="company" th:value="${filters.company}">
 				<input type="text" placeholder="Documento" name="document" th:value="${filters.document}">

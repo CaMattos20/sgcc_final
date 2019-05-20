@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/default :: head">
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:insert="fragments/default :: header"></div>
+	
+	<div class="container main-container">
+		<div th:insert="fragments/default :: title (message = 'Prédios / Formulário')"></div>
+		
+		<div class="container col-sm-8">
+			<form class="default-form" th:action="@{'/building/'}" th:object="${obj}" method="POST">
+				<input type="hidden" th:field="*{id}">
+				<div class="form-group">
+					<label>Nome</label>
+					<input type="text" class="form-control" required="required" placeholder="Nome" th:field="*{name}">
+				</div>
+				
+				<div class="form-buttons">
+					<button type="button" class="btn btn-outline-dark" onclick="window.history.back()">Voltar</button>
+					<button type="submit" class="btn btn-dark">Salvar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div th:insert="fragments/default :: js"></div>
+</body>
+</html>

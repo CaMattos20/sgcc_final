@@ -31,17 +31,11 @@ Funcionarios:
  * Valid From
  * Valid To
 
-	> Ajustar filtros
-	> Ajustar formulário
-		- Dropdown com funcionário
-		- Dropdown com empresa
-
 Prédios:
  * Id
  * Nome
  * Status
  * Valid From
- * Valid To
 
 Salas Comerciais:
  * Id
