@@ -9,20 +9,11 @@
 	<div th:insert="fragments/default :: header"></div>
 	
 	<div class="container main-container">
-		<div th:insert="fragments/default :: title (message = 'Formulário de Funcionário')"></div>
+		<div th:insert="fragments/default :: title (message = 'Prédios / Formulário')"></div>
 		
 		<div class="container col-sm-8">
-			<form class="default-form" th:action="@{'/employee/'}" th:object="${obj}" method="POST">
+			<form class="default-form" th:action="@{'/room-owner/'}" th:object="${obj}" method="POST">
 				<input type="hidden" th:field="*{id}">
-				<input type="hidden" th:field="*{status}">
-				
-				<div class="form-group">
-					<label>Pessoa</label>
-					<select class="custom-select" th:field="*{person}">
-						<option value="" selected>Choose...</option>
-						<option th:each="person : ${personList}" th:value="${person.id}" th:text="${person.name}"></option>
-					</select>
-				</div>
 				
 				<div class="form-group">
 					<label>Empresa</label>
@@ -30,6 +21,19 @@
 						<option value="" selected>Choose...</option>
 						<option th:each="company : ${companyList}" th:value="${company.id}" th:text="${company.name}"></option>
 					</select>
+				</div>
+				
+				<div class="form-group">
+					<label>Prédio</label>
+					<select class="custom-select" th:field="*{building}">
+						<option value="" selected>Choose...</option>
+						<option th:each="obj : ${buildingList}" th:value="${obj.id}" th:text="${obj.name}"></option>
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label>Número da Sala</label>
+					<input type="text" class="form-control" required="required" placeholder="Número da Sala" th:field="*{roomNumber}">
 				</div>
 				
 				<div class="form-buttons">
