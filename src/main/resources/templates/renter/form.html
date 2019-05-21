@@ -9,10 +9,10 @@
 	<div th:insert="fragments/default :: header"></div>
 	
 	<div class="container main-container">
-		<div th:insert="fragments/default :: title (message = 'Proprietários / Formulário')"></div>
+		<div th:insert="fragments/default :: title (message = 'Locatários / Formulário')"></div>
 		
 		<div class="container col-sm-8">
-			<form class="default-form" th:action="@{'/room-owner/'}" th:object="${obj}" method="POST">
+			<form class="default-form" th:action="@{'/renter/'}" th:object="${obj}" method="POST">
 				<input type="hidden" th:field="*{id}">
 				
 				<div class="form-group">

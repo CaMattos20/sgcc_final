@@ -1,4 +1,4 @@
-package br.com.sgcc.room.owner;
+package br.com.sgcc.renter;
 
 import java.util.Optional;
 
@@ -16,11 +16,11 @@ import br.com.sgcc.company.CompanyRepository;
 import br.com.sgcc.core.ControllerTemplate;
 
 @Controller
-@RequestMapping("/room-owner")
-public class RoomOwnerController extends ControllerTemplate<RoomOwner> {
+@RequestMapping("/renter")
+public class RenterController extends ControllerTemplate<Renter> {
 
 	@Autowired
-	private RoomOwnerRepository repository;
+	private RenterRepository repository;
 	
 	@Autowired
 	private CompanyRepository companyRepository;
@@ -29,16 +29,16 @@ public class RoomOwnerController extends ControllerTemplate<RoomOwner> {
 	private BuildingRepository buildingRepository;
 	
 	
-	public RoomOwnerController() {
-		super(RoomOwner.class);
+	public RenterController() {
+		super(Renter.class);
 	}
 	
 
 	@GetMapping("")
-	public String list(Model model, Optional<String> page, RoomOwnerFilters filters) {
+	public String list(Model model, Optional<String> page, RenterFilters filters) {
 		super.list(model, page, repository, filters);
 		
-		return "roomOwner/list";
+		return "renter/list";
 	}
 	
 	@GetMapping(value = {"/form", "/form/{id}"})
@@ -48,21 +48,21 @@ public class RoomOwnerController extends ControllerTemplate<RoomOwner> {
 		model.addAttribute("companyList", companyRepository.findAll());
 		model.addAttribute("buildingList", buildingRepository.findAll());
 		
-		return "roomOwner/form";
+		return "renter/form";
 	}
 	
 	@PostMapping("/")
-	public String save(@ModelAttribute RoomOwner obj) {
+	public String save(@ModelAttribute Renter obj) {
 		super.save(repository, obj);
 		
-		return "redirect:/room-owner";
+		return "redirect:/renter";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable String id) {
 		super.delete(repository, id);
 		
-		return "redirect:/room-owner";
+		return "redirect:/renter";
 	}
 
 }
