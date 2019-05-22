@@ -1,6 +1,6 @@
 # SGCC
 
-O Sistema para Gestão de Condomínio Comercial (SGCC) abrange os processos relacionados ao uso de materiais, recepção e atenção aos usuários, locatários, locadores e clientes, bem como geração e pagamento do condomínio. Além disso, também realiza a gestão inteligente do consumo de água e energia elétrica, manutenção de elevadores, ambientes, limpeza, segurança patrimonial, incêndio, lixo, estacionamento e correio.
+O Sistema para Gestão de Condomínio Comercial (SGCC) abrange os processos relacionados ao uso de materiais, recepção e atenção aos usuários, locatários, locadores e clientes, bem como geração e pagamento do condomínio. Além disso, também realiza a gestão do consumo de água e energia elétrica, manutenção de elevadores, ambientes, limpeza, segurança patrimonial, incêndio, lixo, estacionamento e correio.
 
 
 #### Entidades
