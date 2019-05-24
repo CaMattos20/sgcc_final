@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/default :: head">
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:insert="fragments/default :: header"></div>
+	
+	<div class="container main-container">
+		<div th:insert="fragments/default :: title (message = 'Despesas')"></div>
+		
+		<div class="container">
+		<div class="crud-buttons">
+			<a th:href="@{/expenses/form}" class="btn btn-outline-dark">Adicionar</a>
+		</div>
+		
+		<div class="filters">
+			<form th:href="@{/expenses}" method="GET" autocomplete="off">
+				<input type="hidden" name="page" value="1">
+				<input type="text" placeholder="Mes" name="month" th:value="${filters.month}">
+				<input type="text" placeholder="Ano" name="year" th:value="${filters.year}">
+				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
+			</form>
+		</div>
+		<br/>
+		<table class="table table-hover">
+			<thead class="thead-dark">
+				<tr>
+					<th>Mês</th>
+					<th>Ano</th>
+					<th>Água</th>
+					<th>Eletricidade</th>
+					<th>Elevadores</th>
+					<th>Ambientes</th>
+					<th>Limpeza</th>
+					<th>Incêndio</th>
+					<th>Lixo</th>
+					<th>Estacionamento</th>
+					<th>Correio</th>
+					<th>Ações</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr th:each="expenses : ${list}">
+					<td><span th:text="${expenses.month}"></span></td>
+					<td><span th:text="${expenses.year}"></span></td>
+					<td><span th:text="${expenses.water}"></span></td>
+					<td><span th:text="${expenses.electricity}"></span></td>
+					<td><span th:text="${expenses.elevators}"></span></td>
+					<td><span th:text="${expenses.environment}"></span></td>
+					<td><span th:text="${expenses.cleaning}"></span></td>
+					<td><span th:text="${expenses.fire}"></span></td>
+					<td><span th:text="${expenses.garbage}"></span></td>
+					<td><span th:text="${expenses.parking}"></span></td>
+					<td><span th:text="${expenses.mail}"></span></td>
+					<td class="table-actions">
+						<a th:href="@{'/expenses/form/' + ${expenses.id}}" class="icon-edit"><i class="fas fa-edit"></i></a>
+						<a th:href="@{'/expenses/delete/' + ${expenses.id}}" class="icon-trash"><i class="fas fa-trash"></i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<nav class="paginator" aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item" th:classappend="${page <= 1} ? disabled">
+					<a class="page-link"  th:href="@{/expenses(page=${page-1},month=${filters.month},year=${filters.year})}" aria-disabled="true">Anterior</a>
+				</li>
+				<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
+					<li class="page-item" th:classappend="${i == page} ? active : ''">
+						<a class="page-link" th:href="@{/expenses(page=${i},month=${filters.month},year=${filters.year})}">
+							<span th:text="${i}"></span>
+						</a>
+					</li>
+				</th:block>
+				<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
+					<a class="page-link" th:href="@{/expenses(page=${page+1},month=${filters.month},year=${filters.year})}">Próxima</a>
+				</li>
+			</ul>
+		</nav>
+		</div>
+	</div>
+	
+	<div th:insert="fragments/default :: js"></div>
+</body>
+
+</html>

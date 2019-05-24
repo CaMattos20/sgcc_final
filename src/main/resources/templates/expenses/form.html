@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/default :: head">
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div th:insert="fragments/default :: header"></div>
+	
+	<div class="container main-container">
+		<div th:insert="fragments/default :: title (message = 'Despesas / Formulário')"></div>
+		
+		<div class="container col-sm-8">
+			<form class="default-form" th:action="@{'/expenses/'}" th:object="${obj}" method="POST">
+				<input type="hidden" th:field="*{id}">
+				
+				<div class="form-group">
+					<label>Mês</label>
+					<input type="text" class="form-control" required="required" placeholder="Mês" th:field="*{month}">
+				</div>
+				
+				<div class="form-group">
+					<label>Ano</label>
+					<input type="text" class="form-control" required="required" placeholder="Ano" th:field="*{year}">
+				</div>
+				
+				<div class="form-group">
+					<label>Materiais</label>
+					<input type="text" class="form-control" required="required" th:field="*{materials}">
+				</div>
+				
+				<div class="form-group">
+					<label>Água</label>
+					<input type="text" class="form-control" required="required" th:field="*{water}">
+				</div>
+				<div class="form-group">
+					<label>Eletricidade</label>
+					<input type="text" class="form-control" required="required" th:field="*{electricity}">
+				</div>
+				<div class="form-group">
+					<label>Elevadores</label>
+					<input type="text" class="form-control" required="required" th:field="*{elevators}">
+				</div>
+				<div class="form-group">
+					<label>Ambientes</label>
+					<input type="text" class="form-control" required="required" th:field="*{environment}">
+				</div>
+				<div class="form-group">
+					<label>Limpeza</label>
+					<input type="text" class="form-control" required="required" th:field="*{cleaning}">
+				</div>
+				<div class="form-group">
+					<label>Incêndio</label>
+					<input type="text" class="form-control" required="required" th:field="*{fire}">
+				</div>
+				<div class="form-group">
+					<label>Coleta de Lixo</label>
+					<input type="text" class="form-control" required="required" th:field="*{garbage}">
+				</div>
+				<div class="form-group">
+					<label>Estacionamento</label>
+					<input type="text" class="form-control" required="required" th:field="*{parking}">
+				</div>
+				<div class="form-group">
+					<label>Correio</label>
+					<input type="text" class="form-control" required="required" th:field="*{mail}">
+				</div>
+				
+				<div class="form-buttons">
+					<button type="button" class="btn btn-outline-dark" onclick="window.history.back()">Voltar</button>
+					<button type="submit" class="btn btn-dark">Salvar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div th:insert="fragments/default :: js"></div>
+</body>
+</html>
