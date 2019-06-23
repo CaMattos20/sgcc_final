@@ -1,4 +1,4 @@
-package br.com.sgcc.person;
+package br.com.sgcc.visitor;
 
 import java.util.Optional;
 
@@ -6,7 +6,7 @@ import br.com.sgcc.core.Filters;
 import lombok.Data;
 
 @Data
-public class PersonFilters implements Filters {
+public class VisitorFilters implements Filters {
 
 	private Optional<String> name;
 	private Optional<String> email;
@@ -15,7 +15,7 @@ public class PersonFilters implements Filters {
 	private Optional<String> document;
 	
 	
-	public PersonFilters() {
+	public VisitorFilters() {
 		name = Optional.empty();
 		email = Optional.empty();
 		type = Optional.empty();

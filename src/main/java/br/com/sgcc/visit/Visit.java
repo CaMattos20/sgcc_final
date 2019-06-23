@@ -15,7 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import br.com.sgcc.building.Building;
 import br.com.sgcc.company.Company;
 import br.com.sgcc.core.NormalizedEntity;
-import br.com.sgcc.person.Person;
+import br.com.sgcc.visitor.Visitor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -25,8 +25,8 @@ import lombok.EqualsAndHashCode;
 public class Visit extends NormalizedEntity {
 
 	@ManyToOne
-	@JoinColumn(name="PERSON_ID")
-	private Person person;
+	@JoinColumn(name="VISITOR_ID")
+	private Visitor visitor;
 	
 	@ManyToOne
 	@JoinColumn(name="COMPANY_ID")

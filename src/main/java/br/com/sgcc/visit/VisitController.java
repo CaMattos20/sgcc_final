@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import br.com.sgcc.building.BuildingRepository;
 import br.com.sgcc.company.CompanyRepository;
 import br.com.sgcc.core.ControllerTemplate;
-import br.com.sgcc.person.PersonRepository;
+import br.com.sgcc.visitor.VisitorRepository;
 
 @Controller
 @RequestMapping("/visit")
@@ -24,7 +24,7 @@ public class VisitController extends ControllerTemplate<Visit> {
 	private VisitRepository repository;
 	
 	@Autowired
-	private PersonRepository personRepository;
+	private VisitorRepository visitorRepository;
 	
 	@Autowired
 	private CompanyRepository companyRepository;
@@ -49,7 +49,7 @@ public class VisitController extends ControllerTemplate<Visit> {
 	public String form(@PathVariable Optional<String> id, Model model) throws Exception {
 		super.form(repository, id, model);
 
-		model.addAttribute("personList", personRepository.findAll());
+		model.addAttribute("visitorList", visitorRepository.findAll());
 		model.addAttribute("companyList", companyRepository.findAll());
 		model.addAttribute("buildingList", buildingRepository.findAll());
 		

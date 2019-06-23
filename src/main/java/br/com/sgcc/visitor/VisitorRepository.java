@@ -1,4 +1,4 @@
-package br.com.sgcc.person;
+package br.com.sgcc.visitor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,17 +7,17 @@ import org.springframework.data.jpa.repository.Query;
 import br.com.sgcc.core.DefaultRepository;
 import br.com.sgcc.core.Filters;
 
-public interface PersonRepository extends DefaultRepository<Person> {
+public interface VisitorRepository extends DefaultRepository<Visitor> {
 
-	@Query("select p from Person p "
+	@Query("select p from Visitor p "
 			+ "where upper(p.name) like concat('%', upper(:name), '%') "
 			+ "and upper(p.email) like concat('%', upper(:email), '%') "
 			+ "and upper(p.phoneNumber) like concat('%', upper(:phoneNumber), '%') "
 			+ "and upper(p.document) like concat('%', upper(:document), '%') "
 		)
-	Page<Person> findByFilters(String name, String email, String phoneNumber, String document, Pageable page);
+	Page<Visitor> findByFilters(String name, String email, String phoneNumber, String document, Pageable page);
 
-	@Query("select count(*) from Person p "
+	@Query("select count(*) from Visitor p "
 			+ "where upper(p.name) like concat('%', upper(:name), '%') "
 			+ "and upper(p.email) like concat('%', upper(:email), '%') "
 			+ "and upper(p.phoneNumber) like concat('%', upper(:phoneNumber), '%') "
@@ -27,15 +27,15 @@ public interface PersonRepository extends DefaultRepository<Person> {
 	
 	
 	@Override
-	default Page<Person> findByFilters(Filters f, Pageable page) {
-		PersonFilters filters = (PersonFilters) f;
+	default Page<Visitor> findByFilters(Filters f, Pageable page) {
+		VisitorFilters filters = (VisitorFilters) f;
 		
 		return findByFilters(filters.getName(), filters.getEmail(), filters.getPhoneNumber(), filters.getDocument(), page);
 	}
 
 	@Override
 	default long count(Filters f) {
-		PersonFilters filters = (PersonFilters) f;
+		VisitorFilters filters = (VisitorFilters) f;
 		
 		return count(filters.getName(), filters.getEmail(), filters.getPhoneNumber(), filters.getDocument());
 	}

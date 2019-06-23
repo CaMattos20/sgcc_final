@@ -11,7 +11,6 @@ public class EmployeeFilters implements Filters {
 	private Optional<String> name = Optional.empty();
 	private Optional<String> company = Optional.empty();
 	private Optional<String> document = Optional.empty();
-	private Optional<String> status = Optional.empty();
 	
 	
 	public String getName() {
@@ -26,8 +25,5 @@ public class EmployeeFilters implements Filters {
 		return document.orElse("");
 	}
 	
-	public String getStatus() {
-		return status.orElse("");
-	}
 	
 }

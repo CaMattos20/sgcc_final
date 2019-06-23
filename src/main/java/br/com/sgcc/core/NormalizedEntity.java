@@ -19,21 +19,12 @@ public abstract class NormalizedEntity {
 	@Column(name="ID")
 	@GeneratedValue(strategy=IDENTITY)
 	private Integer id;
-	
-	@Column(name="STATUS")
-	protected String status;
-
-	@Column(name="VALID_FROM")	
-	protected LocalDateTime validFrom;
 
 
 	public boolean isNew() {
 		return getId() == null;
 	}
 	
-	public void initialize() {
-		this.status = "A";
-		this.validFrom = LocalDateTime.now();
-	}
+	
 	
 }

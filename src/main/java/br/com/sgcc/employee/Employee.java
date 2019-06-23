@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 import br.com.sgcc.company.Company;
 import br.com.sgcc.core.NormalizedEntity;
-import br.com.sgcc.person.Person;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,20 +20,27 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper=false)
 public class Employee extends NormalizedEntity {
 	
-	@ManyToOne
-	@JoinColumn(name="PERSON_ID")
-	private Person person;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="COMPANY_ID")
 	private Company company;
 	
-	@Column(name="VALID_TO")
-	private LocalDateTime validTO;
+	@Column(name="NAME")
+    private String name;
+	
+    @Column(name="EMAIL")
+    private String email;
+	
+    @Column(name="PHONE_NUMBER")
+    private String phoneNumber;
+	
+    @Column(name="DOCUMENT")
+    private String document;
 	
 	
 	public Employee() {
-		this.person = new Person();
+		
 		this.company = new Company();
 	}
 	

@@ -50,9 +50,7 @@ public class  ControllerTemplate<T extends NormalizedEntity> {
 	}
 	
 	public void save(DefaultRepository<T> repository, T obj) {
-		if(obj.isNew()) {
-			obj.initialize();
-		}
+		
 		
 		repository.save(obj);
 	}

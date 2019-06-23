@@ -19,7 +19,7 @@
 		<div class="filters">
 			<form th:href="@{/visit}" method="GET" autocomplete="off">
 				<input type="hidden" name="page" value="1">
-				<input type="text" placeholder="Pessoa" name="person" th:value="${filters.person}">
+				<input type="text" placeholder="Visitante" name="visitor" th:value="${filters.visitor}">
 				<input type="text" placeholder="Empresa" name="company" th:value="${filters.company}">
 				<input type="text" placeholder="Prédio" name="Building" th:value="${filters.building}">
 				<button type="submit" class="btn btn-dark icon-edit"><i style="color: white;" class="fas fa-search"></i></button>
@@ -40,7 +40,7 @@
 			<thead>
 			<tbody>
 				<tr th:each="obj : ${list}">
-					<td><span th:text="${obj.person.name}"></span></td>
+					<td><span th:text="${obj.visitor.name}"></span></td>
 					<td><span th:text="${obj.company.name}"></span></td>
 					<td><span th:text="${obj.building.name}"></span></td>
 					<td><span th:text="${obj.roomNumber}"></span></td>
@@ -56,17 +56,17 @@
 		<nav class="paginator" aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item" th:classappend="${page <= 1} ? disabled">
-					<a class="page-link"  th:href="@{/visit(page=${page-1},person=${filters.person},company=${filters.company},building=${filters.building})}" aria-disabled="true">Anterior</a>
+					<a class="page-link"  th:href="@{/visit(page=${page-1},visitor=${filters.visitor},company=${filters.company},building=${filters.building})}" aria-disabled="true">Anterior</a>
 				</li>
 				<th:block th:each="i: ${#numbers.sequence(1, pageCount)}">
 					<li class="page-item" th:classappend="${i == page} ? active : ''">
-						<a class="page-link" th:href="@{/visit(page=${i},person=${filters.person},company=${filters.company},building=${filters.building})}">
+						<a class="page-link" th:href="@{/visit(page=${i},visitor=${filters.visitor},company=${filters.company},building=${filters.building})}">
 							<span th:text="${i}"></span>
 						</a>
 					</li>
 				</th:block>
 				<li class="page-item" th:classappend="${page >= pageCount} ? disabled">
-					<a class="page-link" th:href="@{/visit(page=${page+1},person=${filters.person},company=${filters.company},building=${filters.building})}">Próxima</a>
+					<a class="page-link" th:href="@{/visit(page=${page+1},visitor=${filters.visitor},company=${filters.company},building=${filters.building})}">Próxima</a>
 				</li>
 			</ul>
 		</nav>

@@ -9,10 +9,10 @@
 	<div th:insert="fragments/default :: header"></div>
 	
 	<div class="container main-container">
-		<div th:insert="fragments/default :: title (message = 'Pessoas / Formulário')"></div>
+		<div th:insert="fragments/default :: title (message = 'Visitantes / Formulário')"></div>
 		
 		<div class="container col-sm-8">
-			<form class="default-form" th:action="@{'/person/'}" th:object="${obj}" method="POST">
+			<form class="default-form" th:action="@{'/visitor/'}" th:object="${obj}" method="POST">
 				<input type="hidden" th:field="*{id}">
 				<div class="form-group">
 					<label>Nome</label>

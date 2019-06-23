@@ -16,11 +16,14 @@
 				<input type="hidden" th:field="*{id}">
 				
 				<div class="form-group">
-					<label>Pessoa</label>
-					<select class="custom-select" th:field="*{person}">
-						<option value="" selected>Selecione...</option>
-						<option th:each="obj : ${personList}" th:value="${obj.id}" th:text="${obj.name}"></option>
-					</select>
+					<label>Visitante</label>
+					<div>
+						<select class="custom-select" th:field="*{visitor}" style="width: 75%">
+							<option value="" selected>Selecione...</option>
+							<option th:each="obj : ${visitorList}" th:value="${obj.id}" th:text="${obj.name}"></option>
+						</select>
+						<a class="btn btn-dark" th:href="@{'/visitor/form'}"  style="width: 24%">Novo</a>
+					</div>
 				</div>
 				
 				<div class="form-group">

@@ -8,14 +8,14 @@ import lombok.Data;
 @Data
 public class VisitFilters implements Filters {
 
-	private Optional<String> person = Optional.empty();
+	private Optional<String> visitor = Optional.empty();
 	private Optional<String> company = Optional.empty();
 	private Optional<String> building = Optional.empty();
 	private Optional<Integer> roomNumber = Optional.empty();
 
 	
-	public String getPerson() {
-		return person.orElse("");
+	public String getVisitor() {
+		return visitor.orElse("");
 	}
 	
 	public String getCompany() {
